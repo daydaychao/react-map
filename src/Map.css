@@ -1,0 +1,18 @@
+.card-world {
+  background: #333;
+}
+
+.card-view {
+  background: #666;
+  min-width: 500px;
+  min-height: 500px;
+  max-width: 500px;
+  max-height: 500px;
+  /* overflow: hidden; */
+  border: 1px solid yellow;
+}
+
+.card-wrapper {
+  background: #999;
+  border: 1px solid red;
+}
