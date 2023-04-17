@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/store/Atom.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1681729329015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1681729339166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,26 @@\n import React, { useEffect, useState } from 'react'\n import { useAtom } from 'jotai'\n import { cardAtom, cardType } from './atom'\n \n+\n+import { atom } from 'jotai'\n+\n+export type cardType = {\n+  x: number\n+  y: number\n+  color: string\n+  name: string\n+}\n+\n+export const cardAtom = atom([\n+  { x: 0, y: 0, color: 'red', name: '1' },\n+  { x: -1, y: 1, color: 'red', name: '2' },\n+  { x: 2, y: 2, color: 'blue', name: '3' },\n+  { x: 3, y: 0, color: 'blue', name: '4' }\n+])\n+\n+\n export default function Atom() {\n   const [card, setCard] = useAtom(cardAtom)\n \n   let maxX = 3\n"
+                },
+                {
+                    "date": 1681729346571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n //import useState\n import React, { useEffect, useState } from 'react'\n import { useAtom } from 'jotai'\n-import { cardAtom, cardType } from './atom'\n \n import { atom } from 'jotai'\n \n export type cardType = {\n"
+                },
+                {
+                    "date": 1681729444389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n //import useState\n import React, { useEffect, useState } from 'react'\n-import { useAtom } from 'jotai'\n+import { atom,useAtom } from 'jotai'\n \n-import { atom } from 'jotai'\n \n export type cardType = {\n   x: number\n   y: number\n"
+                }
+            ],
+            "date": 1681729329015,
+            "name": "Commit-0",
+            "content": "//import useState\nimport React, { useEffect, useState } from 'react'\nimport { useAtom } from 'jotai'\nimport { cardAtom, cardType } from './atom'\n\nexport default function Atom() {\n  const [card, setCard] = useAtom(cardAtom)\n\n  let maxX = 3\n  setInterval(() => {\n    maxX++\n    const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n    setCard([...card, newCard])\n    console.log('components atom.tsx - cardAtom', cardAtom)\n  }, 1000)\n\n  return <>atom</>\n}\n"
+        }
+    ]
+}

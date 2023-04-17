@@ -1,7 +1,7 @@
 //import useState
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAtom } from 'jotai'
-import { cardAtom, cardType } from './store/atom'
+import { cardAtom, cardType } from '../store/CardAtoms'
 
 const CARD_BOX = {
   width: 60,
@@ -11,18 +11,18 @@ const CARD_BOX = {
 export default function Map() {
   const [currentX, setCurrentX] = useState(0)
   const [currentY, setCurrentY] = useState(0)
-
-  const [cards, setCards] = useAtom(cardAtom)
+  const [cards] = useAtom(cardAtom)
 
   const handleScroll = (e: any) => {
     console.log('handleScroll', e)
   }
+  console.log('Map.tsx - cards', cards)
 
   return (
     <div className="card-world">
-      <div className="card-view" onScroll={() => handleScroll}>
+      <div className="card-view" onScroll={handleScroll}>
         <div className="card-wrapper" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>
-          {cards?.length && renderCards(cards)}
+          {renderCards(cards)}
         </div>
       </div>
     </div>

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/store/CardStore.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1681729544156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1681729544156,
+            "name": "Commit-0",
+            "content": "import { atom, useAtom } from 'jotai'\n\nexport type cardType = {\n  x: number\n  y: number\n  color: string\n  name: string\n}\n\nexport const cardAtom = atom([\n  { x: 0, y: 0, color: 'red', name: '1' },\n  { x: -1, y: 1, color: 'red', name: '2' },\n  { x: 2, y: 2, color: 'blue', name: '3' },\n  { x: 3, y: 0, color: 'blue', name: '4' }\n])\n\nexport default function CardStore() {\n  const [card, setCard] = useAtom(cardAtom)\n\n  let maxX = 3\n  setInterval(() => {\n    maxX++\n    const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n    setCard([...card, newCard])\n    console.log('components atom.tsx - cardAtom', cardAtom)\n  }, 1000)\n\n  return <>atom</>\n}\n"
+        }
+    ]
+}

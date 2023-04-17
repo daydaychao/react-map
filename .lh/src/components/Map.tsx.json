@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/components/Map.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1681725893278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1681726532921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,10 @@\n   const handleScroll = (e: any) => {\n     console.log('handleScroll', e)\n   }\n \n+  setTimeout(()=>{},20)\n+\n   return (\n     <div className=\"card-world\">\n       <div className=\"card-view\" onScroll={() => handleScroll}>\n         <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n"
+                },
+                {
+                    "date": 1681726540057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n   const handleScroll = (e: any) => {\n     console.log('handleScroll', e)\n   }\n \n-  setTimeout(()=>{},20)\n+  setTimeout(()=>{\n+    console.l\n+  },2000)\n \n   return (\n     <div className=\"card-world\">\n       <div className=\"card-view\" onScroll={() => handleScroll}>\n"
+                },
+                {
+                    "date": 1681726559508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,11 @@\n   const handleScroll = (e: any) => {\n     console.log('handleScroll', e)\n   }\n \n-  setTimeout(()=>{\n-    console.l\n-  },2000)\n-\n+  useEffect={() => {\n+    console.log('cards',cards)\n+  },[cards])\n   return (\n     <div className=\"card-world\">\n       <div className=\"card-view\" onScroll={() => handleScroll}>\n         <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n"
+                },
+                {
+                    "date": 1681726564572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   const handleScroll = (e: any) => {\n     console.log('handleScroll', e)\n   }\n \n-  useEffect={() => {\n+  useEffect({() => {\n     console.log('cards',cards)\n   },[cards])\n   return (\n     <div className=\"card-world\">\n"
+                },
+                {
+                    "date": 1681726571764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n //import useState\n-import React, { useState } from 'react'\n+import React, { useEffect, useState } from 'react'\n import { useAtom } from 'jotai'\n import { cardAtom, cardType } from '../store/atom'\n \n const CARD_BOX = {\n@@ -17,11 +17,11 @@\n   const handleScroll = (e: any) => {\n     console.log('handleScroll', e)\n   }\n \n-  useEffect({() => {\n+  useEffect(() => {\n     console.log('cards',cards)\n-  },[cards])\n+  },[cards]))\n   return (\n     <div className=\"card-world\">\n       <div className=\"card-view\" onScroll={() => handleScroll}>\n         <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n"
+                },
+                {
+                    "date": 1681726578440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n   }\n \n   useEffect(() => {\n     console.log('cards',cards)\n-  },[cards]))\n+  },[cards])\n+  \n   return (\n     <div className=\"card-world\">\n       <div className=\"card-view\" onScroll={() => handleScroll}>\n         <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n"
+                },
+                {
+                    "date": 1681726793538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n   }, [cards])\n \n   return (\n     <div className=\"card-world\">\n-      <div className=\"card-view\" onScroll={() => handleScroll}>\n+      <div className=\"card-view\" onScroll={handleScroll}>\n         <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n           {cards?.length && renderCards(cards)}\n         </div>\n       </div>\n"
+                },
+                {
+                    "date": 1681727147759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     console.log('useEffect cards', cards)\n   }, [cards])\n \n   setTimeout(() => {\n-    console.log('useAtom(cardAtom)', useAtom(cardAtom))\n+    console.log('useAtom(cardAtom)', useAtom(cardAtom).value)\n   }, 2000)\n \n   return (\n     <div className=\"card-world\">\n"
+                }
+            ],
+            "date": 1681725893278,
+            "name": "Commit-0",
+            "content": "//import useState\nimport React, { useState } from 'react'\nimport { useAtom } from 'jotai'\nimport { cardAtom, cardType } from '../store/atom'\n\nconst CARD_BOX = {\n  width: 60,\n  height: 100\n}\n\nexport default function Map() {\n  const [currentX, setCurrentX] = useState(0)\n  const [currentY, setCurrentY] = useState(0)\n\n  const [cards, setCards] = useAtom(cardAtom)\n\n  const handleScroll = (e: any) => {\n    console.log('handleScroll', e)\n  }\n\n  return (\n    <div className=\"card-world\">\n      <div className=\"card-view\" onScroll={() => handleScroll}>\n        <div className=\"card-wrapper\" style={{ transform: `translate(${currentX}px, ${currentY}px)` }}>\n          {cards?.length && renderCards(cards)}\n        </div>\n      </div>\n    </div>\n  )\n}\n\n// 渲染卡片\nfunction renderCards(cards: cardType[]) {\n  console.log('renderCards', cards)\n  //取得x,y整數\n  let maxX = -Infinity\n  let minX = Infinity\n  let maxY = -Infinity\n  let minY = Infinity\n  let totalX = 0\n  let totalY = 0\n\n  for (const card of cards) {\n    maxX = Math.max(maxX, card.x)\n    minX = Math.min(minX, card.x)\n    maxY = Math.max(maxY, card.y)\n    minY = Math.min(minY, card.y)\n    totalX += Math.abs(card.x)\n    totalY += Math.abs(card.y)\n  }\n\n  totalX = Math.abs(maxX) + Math.abs(minX)\n  totalY = Math.abs(maxY) + Math.abs(minY)\n\n  console.log({ totalX, totalY })\n\n  return cards?.map((card, index) => (\n    <div\n      key={'card' + index}\n      style={{\n        gridColumn: `${card.x + totalY / 2} / ${card.x + totalY / 2 + 1}`,\n        gridRow: `${card.y + totalX / 2} / ${card.y + totalX / 2 + 1}`,\n        width: CARD_BOX.width + 'px',\n        height: CARD_BOX.height + 'px',\n        margin: '10px',\n        backgroundColor: card.color\n      }}>\n      <h4>{card.name}</h4>\n    </div>\n  ))\n}\n"
+        }
+    ]
+}
