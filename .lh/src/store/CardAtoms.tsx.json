@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1681729567586,
@@ -16,6 +16,18 @@
                 {
                     "date": 1681729637356,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,8 @@\n     maxX++\n     const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n     setCard([...card, newCard])\n     console.log('components atom.tsx - cardAtom', cardAtom)\n-  }, 5000)\n+  }, 2000)\n \n   return <>atom</>\n }\n"
+                },
+                {
+                    "date": 1681729860967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n export default function CardAtoms() {\n   const [card, setCard] = useAtom(cardAtom)\n \n   let maxX = 3\n-  setInterval(() => {\n+  setTimeout(() => {\n     maxX++\n     const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n     setCard([...card, newCard])\n     console.log('components atom.tsx - cardAtom', cardAtom)\n"
+                },
+                {
+                    "date": 1681729877505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,13 +17,15 @@\n export default function CardAtoms() {\n   const [card, setCard] = useAtom(cardAtom)\n \n   let maxX = 3\n-  setTimeout(() => {\n+  const timer = setInterval(() => {\n     maxX++\n     const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n     setCard([...card, newCard])\n     console.log('components atom.tsx - cardAtom', cardAtom)\n   }, 2000)\n \n+  clearInterval(timer)\n+\n   return <>atom</>\n }\n"
+                },
+                {
+                    "date": 1681729887992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,30 @@\n+import { atom, useAtom } from 'jotai'\n+\n+export type cardType = {\n+  x: number\n+  y: number\n+  color: string\n+  name: string\n+}\n+\n+export const cardAtom = atom([\n+  { x: 0, y: 0, color: 'red', name: '1' },\n+  { x: -1, y: 1, color: 'red', name: '2' },\n+  { x: 2, y: 2, color: 'blue', name: '3' },\n+  { x: 3, y: 0, color: 'blue', name: '4' }\n+])\n+\n+export default function CardAtoms() {\n+  const [card, setCard] = useAtom(cardAtom)\n+\n+  let maxX = 3\n+  const timer = setInterval(() => {\n+    maxX++\n+    const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }\n+    setCard([...card, newCard])\n+    console.log('components atom.tsx - cardAtom', cardAtom)\n+    clearInterval(timer)\n+  }, 2000)\n+\n+  return <>atom</>\n+}\n"
                 }
             ],
             "date": 1681729567586,

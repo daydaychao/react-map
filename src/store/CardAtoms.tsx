@@ -18,11 +18,12 @@ export default function CardAtoms() {
   const [card, setCard] = useAtom(cardAtom)
 
   let maxX = 3
-  setInterval(() => {
+  const timer = setInterval(() => {
     maxX++
     const newCard: cardType = { x: maxX, y: 0, color: 'red', name: '1' }
     setCard([...card, newCard])
     console.log('components atom.tsx - cardAtom', cardAtom)
+    clearInterval(timer)
   }, 2000)
 
   return <>atom</>
